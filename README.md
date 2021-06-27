@@ -1,5 +1,5 @@
 <p align="center">
-      <img src="https://github.com/brunomoraisti/nlw-payFlow/assets/images/logofull.png" width="100" alt="logo payFlow"/>
+      <img src="https://github.com/brunomoraisti/nlw-payflow/blob/main/assets/images/logofull.png" width="100" alt="logo payFlow"/>
 </p>
 
 <h1 align="center">Pay Flow</h1>
