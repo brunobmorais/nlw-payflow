@@ -25,10 +25,10 @@
 
    <div align="center">
 
-[![Linkedin Badge](https://img.shields.io/static/v1?label=&message=Bruno&color=0000FF&style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/brunomoraisti/)
+[![Linkedin Badge](https://img.shields.io/static/v1?label=&message=Bruno Morais&color=0000FF&style=for-the-badge&logo=LinkedIn)](https://www.linkedin.com/in/brunomoraisti/)
 
-[![issues](https://img.shields.io/github/issues/brunomoraisti/payFlow)]()
-[![issues](https://img.shields.io/github/stars/brunomoraisti/payFlow)]()
+[![issues](https://img.shields.io/github/issues/brunomoraisti/nlw-payFlow)]()
+[![issues](https://img.shields.io/github/stars/brunomoraisti/nlw-payFlow)]()
 
    </div>
 
