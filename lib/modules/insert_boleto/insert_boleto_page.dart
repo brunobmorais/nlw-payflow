@@ -122,12 +122,13 @@ class _InsertBoletoPageState extends State<InsertBoletoPage> {
             enableSecondaryColor: true,
             labelPrimary: "Cancelar",
             onTapPrimary: () {
-              Navigator.pop(context);
+              Navigator.popUntil(context, ModalRoute.withName("/home"));
             },
             labelSecondary: "Cadastrar",
             onTapSecondary: () async {
-              await controller.cadastrar();
-              //Navigator.pop(context);
+              bool result = await controller.cadastrar();
+              if (result)
+                Navigator.popUntil(context, ModalRoute.withName("/home"));
             },
           ),
         ],

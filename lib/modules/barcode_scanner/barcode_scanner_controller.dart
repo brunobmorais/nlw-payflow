@@ -3,17 +3,18 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_ml_kit/google_ml_kit.dart';
 import 'package:image_picker/image_picker.dart';
-import 'barcode_scanner_status.dart';
+
+import './/modules/barcode_scanner/barcode_scanner_status.dart';
 
 class BarcodeScannerController {
   final statusNotifier =
       ValueNotifier<BarcodeScannerStatus>(BarcodeScannerStatus());
+
   BarcodeScannerStatus get status => statusNotifier.value;
   set status(BarcodeScannerStatus status) => statusNotifier.value = status;
 
   var barcodeScanner = GoogleMlKit.vision.barcodeScanner();
   CameraController? cameraController;
-
   InputImage? imagePicker;
 
   void getAvailableCameras() async {
@@ -31,30 +32,36 @@ class BarcodeScannerController {
     }
   }
 
-  Future<void> scannerBarCode(InputImage inputImage) async {
-    try {
-      final barcodes = await barcodeScanner.processImage(inputImage);
+  Future<void> scannerBarCode(InputImage? inputImage) async {
+    if (inputImage != null) {
+      try {
+        final barcodes = await barcodeScanner.processImage(inputImage);
 
-      var barcode;
-      for (Barcode item in barcodes) {
-        barcode = item.value.displayValue;
+        var barcode;
+        for (Barcode item in barcodes) {
+          barcode = item.value.displayValue;
+        }
+
+        if (barcode != null && status.barcode.isEmpty) {
+          status = BarcodeScannerStatus.barcode(barcode);
+          cameraController!.dispose();
+          await barcodeScanner.close();
+        }
+
+        return;
+      } catch (e) {
+        print("erro de leitura $e");
       }
-
-      if (barcode != null && status.barcode.isEmpty) {
-        status = BarcodeScannerStatus.barcode(barcode);
-        cameraController!.dispose();
-        await barcodeScanner.close();
-      }
-
-      return;
-    } catch (e) {
-      print("ERRO DA LEITURA $e");
     }
   }
 
   void scanWithImagePicker() async {
     final response = await ImagePicker().getImage(source: ImageSource.gallery);
-    final inputImage = InputImage.fromFilePath(response!.path);
+    InputImage? inputImage;
+    if (response != null) {
+      inputImage = InputImage.fromFilePath(response.path);
+    }
+
     scannerBarCode(inputImage);
   }
 

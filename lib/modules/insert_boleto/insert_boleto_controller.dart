@@ -21,18 +21,23 @@ class InsertBoletoController {
         name: name, dueDate: dueDate, value: value, barcode: barcode);
   }
 
-  Future<void> saveBoleto() async {
+  Future<bool> saveBoleto() async {
     final instance = await SharedPreferences.getInstance();
     final boletos = instance.getStringList("boletos") ?? <String>[];
     boletos.add(model.toJson());
     await instance.setStringList("boletos", boletos);
-    return;
+    return true;
   }
 
-  Future<void> cadastrar() async {
+  Future<bool> cadastrar() async {
     final form = formKey.currentState;
     if (form!.validate()) {
-      return await saveBoleto();
-    }
+      bool result = await saveBoleto();
+      if (result)
+        return true;
+      else
+        return false;
+    } else
+      return false;
   }
 }
