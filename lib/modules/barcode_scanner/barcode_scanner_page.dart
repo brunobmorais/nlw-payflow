@@ -94,7 +94,8 @@ class _BarcodeScannerPageState extends State<BarcodeScannerPage> {
                 bottomNavigationBar: SetLabelButtons(
                   labelPrimary: "Inserir código do boleto",
                   onTapPrimary: () {
-                    controller.status = BarcodeScannerStatus.error("Error");
+                    //controller.status = BarcodeScannerStatus.error("Error");
+                    Navigator.pushReplacementNamed(context, "/insert_boleto");
                   },
                   labelSecondary: "Adicionar da galeria",
                   onTapSecondary: controller.scanWithImagePicker,
