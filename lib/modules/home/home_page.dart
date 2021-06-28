@@ -64,48 +64,59 @@ class _HomePageState extends State<HomePage> {
       ][controller.currentPage],
       bottomNavigationBar: Container(
         height: 90,
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
           children: [
-            IconButton(
-                onPressed: () {
-                  controller.setPage(0);
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.home,
-                  color: controller.currentPage == 0
-                      ? AppColors.primary
-                      : AppColors.body,
-                )),
-            GestureDetector(
-              onTap: () async {
-                await Navigator.pushNamed(context, "/barcode_scanner");
-                setState(() {});
-              },
-              child: Container(
-                width: 56,
-                height: 56,
-                decoration: BoxDecoration(
-                    color: AppColors.primary,
-                    borderRadius: BorderRadius.circular(5)),
-                child: Icon(
-                  Icons.add_box_outlined,
-                  color: AppColors.background,
-                ),
-              ),
+            Divider(
+              height: 1,
+              thickness: 1,
+              color: AppColors.stroke,
             ),
-            IconButton(
-                onPressed: () {
-                  controller.setPage(1);
-                  setState(() {});
-                },
-                icon: Icon(
-                  Icons.description_outlined,
-                  color: controller.currentPage == 1
-                      ? AppColors.primary
-                      : AppColors.body,
-                ))
+            Padding(padding: const EdgeInsets.all(7)),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                IconButton(
+                    onPressed: () {
+                      controller.setPage(0);
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      Icons.home,
+                      color: controller.currentPage == 0
+                          ? AppColors.primary
+                          : AppColors.body,
+                    )),
+                GestureDetector(
+                  onTap: () async {
+                    await Navigator.pushNamed(context, "/barcode_scanner");
+                    setState(() {});
+                  },
+                  child: Container(
+                    width: 56,
+                    height: 56,
+                    decoration: BoxDecoration(
+                        color: AppColors.primary,
+                        borderRadius: BorderRadius.circular(5)),
+                    child: Icon(
+                      Icons.add_box_outlined,
+                      color: AppColors.background,
+                    ),
+                  ),
+                ),
+                IconButton(
+                    onPressed: () {
+                      controller.setPage(1);
+                      setState(() {});
+                    },
+                    icon: Icon(
+                      Icons.description_outlined,
+                      color: controller.currentPage == 1
+                          ? AppColors.primary
+                          : AppColors.body,
+                    ))
+              ],
+            ),
           ],
         ),
       ),
